@@ -11,9 +11,19 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
+	textureHandle_ = TextureManager::Load("uvChecker.png");
+	model_ = Model::Create();
+	viewProjection_.Initialize();
+	// 自キャラの更新
+	player_ = new Player();
+	// 自キャラの初期化
+	player_->Initialize(model_,textureHandle_, &viewProjection_);
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+	// 自キャラの更新
+	player_->Update();
+}
 
 void GameScene::Draw() {
 
