@@ -4,7 +4,15 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() {
+	
+	for (WorldTransform* worldTrasformBlock : worldTransformBlocks_) {
+		delete worldTransformBlocks;
+
+	}
+
+
+}
 
 void GameScene::Initialize() {
 
