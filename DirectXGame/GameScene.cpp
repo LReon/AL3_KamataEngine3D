@@ -16,18 +16,14 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
-	textureHandle_ = TextureManager::Load("uvChecker.png");
+	textureHandle_ = TextureManager::Load("Mario.png");
 	model_ = Model::Create();
 	viewProjection_.Initialize();
 	// 自キャラの更新
 	player_ = new Player();
 	// 自キャラの初期化
-<<<<<<< Updated upstream
-	player_->Initialize(model_,textureHandle_, &viewProjection_);
-=======
-	player_->Initialize(model_,textureHandle_,&viewProjection_);
+	player_->Initialize(model_,textureHandle_);
 
->>>>>>> Stashed changes
 }
 
 void GameScene::Update() {

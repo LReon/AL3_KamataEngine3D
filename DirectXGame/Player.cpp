@@ -1,4 +1,5 @@
 #include "Player.h"
+<<<<<<< Updated upstream
 #include "cassert"
 
 void Player::Initialize(Model* model,uint32_t textureHandle,ViewProjection* viewProjection) {
@@ -13,6 +14,22 @@ void Player::Initialize(Model* model,uint32_t textureHandle,ViewProjection* view
 	viewProjection_ = viewProjection;
 
 
+=======
+#include <cassert>
+
+
+void Player::Initialize(Model* model, uint32_t textureHandle,ViewProjection* viewProjection) { 
+	// NULLポインタチェック
+	assert(model);
+
+	worldTransform_.Initialize();
+
+	model_ = model;
+	textureHandle_ = textureHandle;
+	// 引数の内容をメンバ変数に記録
+	viewProjection_ = viewProjection;
+	
+>>>>>>> Stashed changes
 
 }
 

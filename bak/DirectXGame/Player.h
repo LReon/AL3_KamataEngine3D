@@ -3,11 +3,8 @@
 
 class Player {
 public:
-	void Initialize(Model* model,uint32_t textureHandle,ViewProjection* viewProjection);
-<<<<<<< Updated upstream
-=======
+	void Initialize(Model* model,uint32_t textureHandle);
 
->>>>>>> Stashed changes
 	void Update();
 
 	void Draw();
@@ -19,10 +16,5 @@ private:
 	Model* model_ = nullptr;
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0u;
-	
-	ViewProjection* viewProjection_ = nullptr;
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 };

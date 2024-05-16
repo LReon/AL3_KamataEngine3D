@@ -8,10 +8,6 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "Player.h"
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
 /// <summary>
 /// ゲームシーン
@@ -52,20 +48,12 @@ private: // メンバ変数
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
-<<<<<<< Updated upstream
-	//テクスチャハンドル
-=======
 	// テクスチャハンドル
->>>>>>> Stashed changes
 	uint32_t textureHandle_ = 0;
 	// 3Dモデル
 	Model* model_ = nullptr;
 	// ビュープロジェクション
 	ViewProjection viewProjection_;
-<<<<<<< Updated upstream
-	// 自キャラ
-=======
 	//自キャラ
->>>>>>> Stashed changes
 	Player* player_ = nullptr;
 };
