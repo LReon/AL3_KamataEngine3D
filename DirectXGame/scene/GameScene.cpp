@@ -6,11 +6,12 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 	
+	delete model_;
+
 	for (WorldTransform* worldTrasformBlock : worldTransformBlocks_) {
-		delete worldTransformBlocks;
-
+		delete worldTrasformBlock;
 	}
-
+	worldTransformBlocks_.clear();
 
 }
 
@@ -19,9 +20,32 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
+
+	const uint32_t kNumBlockHrizonal = 20;
+	const float kBlockWidth = 2.0f;
+	worldTransformBlocks_.resize(kNumBlockHrizonal);
+
+	for (uint32_t i = 0; i < kNumBlockHrizonal; i++) {
+		worldTransformBlocks_[i] = new WorldTransform;
+		worldTransformBlocks_[i]->Initialize();
+		worldTransformBlocks_[i]->translation_.x = kBlockWidth * i;
+		worldTransformBlocks_[i]->translation_.y = 0.0f;
+	}
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+
+	for (WorldTransform* worldTransformBlock : worldTransformBlocks_) {
+	
+		
+		
+
+
+		worldTransformBlock->matWorld_ = 
+	}
+
+
+}
 
 void GameScene::Draw() {
 
