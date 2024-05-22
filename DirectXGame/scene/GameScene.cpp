@@ -4,17 +4,29 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() { 
+	delete sprite_;
+	delete model_;
+}
 
 void GameScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
-	textureHandle_ = TextureManager::Load("mario.jpg");
+	textureHandle_ = TextureManager::Load("Mario.png");
+	sprite_ = Sprite::Create(textureHandle_, {100, 50});
+	model_ = Model::Create();
+	worldTransform_.Initialize();
+	viewProjection_.Initialize();
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+	Vector2 position = sprite_->GetPosition();
+	position.x += 2.0f;
+	position.y += 1.0f;
+	sprite_->SetPosition(position);
+}
 
 void GameScene::Draw() {
 
@@ -43,6 +55,8 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 
+	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion
@@ -50,6 +64,8 @@ void GameScene::Draw() {
 #pragma region 前景スプライト描画
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
+
+	//sprite_->Draw();
 
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
