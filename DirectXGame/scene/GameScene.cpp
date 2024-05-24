@@ -33,7 +33,8 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 	
-	modelSkydome_ = Model::CreateFromOBJ("skydome", true);
+
+	modelSkydome_ = Model::CreateFromOBJ("sphere", true);
 
 	viewProjection_.Initialize();
 	modelBlock_ = Model::Create();
