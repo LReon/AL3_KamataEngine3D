@@ -24,7 +24,7 @@ GameScene::~GameScene() {
 
 void GameScene::Initialize() {
 
-	debugCamera_ = new DebugCamera(1280, 720);
+	debugCamera_ = new DebugCamera(1920, 1080);
 
 
 	dxCommon_ = DirectXCommon::GetInstance();
@@ -65,13 +65,13 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 
 
-	#ifdef  _DEBUG
+
 
 	if (input_->TriggerKey(DIK_SPACE)) {
 		debugCameraActive_ = !debugCameraActive_;
 	}
 
-#endif //  _DEBUG
+ //  _DEBUG
 
 
 	if (debugCameraActive_) {
