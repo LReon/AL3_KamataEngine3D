@@ -19,6 +19,8 @@ GameScene::~GameScene() {
 		
 	}
 	worldTransformBlocks_.clear();
+
+	delete modelSkydome_;
 	
 }
 
@@ -31,6 +33,8 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 	
+	modelSkydome_ = Model::CreateFromOBJ("skydome", true);
+
 	viewProjection_.Initialize();
 	modelBlock_ = Model::Create();
 	const uint32_t kNumBlockVirtical = 10;
@@ -63,7 +67,7 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
-
+	debugCamera_->Update();
 
 	#ifdef  _DEBUG
 
@@ -130,6 +134,8 @@ void GameScene::Draw() {
 			modelBlock_->Draw(*worldTransformBlock, viewProjection_);
 	}
 }
+
+	
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion
