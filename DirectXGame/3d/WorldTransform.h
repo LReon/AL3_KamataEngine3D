@@ -45,7 +45,7 @@ public:
 	/// <summary>
 	/// 行列を転送する
 	/// </summary>
-	void TransferMatrix();
+	
 	/// <summary>
 	/// 定数バッファの取得
 	/// </summary>
@@ -53,6 +53,7 @@ public:
 	const Microsoft::WRL::ComPtr<ID3D12Resource>& GetConstBuffer() const { return constBuffer_; }
 
 	void UpdateMatrix();
+	void TransferMatrix();
 
 private:
 	// 定数バッファ
