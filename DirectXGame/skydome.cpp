@@ -1,24 +1,24 @@
 #include "skydome.h"
 #include <cassert>
 
-void Skydome::Initialize(Model* model, ViewProjection* viewProjection) {
+void Skydome::Initialize(Model* skymodel, ViewProjection* viewProjection) {
 
-	assert(model);
+	assert(skymodel);
 
 	worldTransform_.Initialize();
 
-	model_ = model;
+	skymodel_ = skymodel;
 	
-	// 引数の内容をメンバ変数に記録
+	
 	viewProjection_ = viewProjection;
 
 }
 
 void Skydome::Update() {
 	worldTransform_.TransferMatrix();
-
+	
 }
 
 void Skydome::Deaw() {
-	model_->Draw(worldTransform_, *viewProjection_);
+	skymodel_->Draw(worldTransform_, *viewProjection_);
 }

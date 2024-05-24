@@ -10,6 +10,7 @@
 #include <vector>
 #include <DebugCamera.h>
 #include <DebugCamera.h>
+#include "skydome.h"
 
 /// <summary>
 /// ゲームシーン
@@ -34,6 +35,8 @@ public: // メンバ関数
 	bool debugCameraActive_ = false;
 	
 	DebugCamera* debugCamera_ = nullptr;
+
+	//Skydome* skydome_ = nullptr;
 	
 	Model* modelSkydome_ = nullptr;
 	

@@ -32,9 +32,9 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
-	
 
-	modelSkydome_ = Model::CreateFromOBJ("sphere", true);
+	modelSkydome_ = Model::CreateFromOBJ("SkyDome", true);	
+	
 
 	viewProjection_.Initialize();
 	modelBlock_ = Model::Create();
@@ -98,7 +98,7 @@ void GameScene::Update() {
 			worldTransformBlock->UpdateMatrix();
 		}
 	}
-
+	
 }
 
 void GameScene::Draw() {
@@ -133,9 +133,10 @@ void GameScene::Draw() {
 			if (!worldTransformBlock)
 				continue;
 			modelBlock_->Draw(*worldTransformBlock, viewProjection_);
+			
 	}
 }
-
+	
 	
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

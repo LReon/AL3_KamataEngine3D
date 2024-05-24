@@ -10,6 +10,6 @@ public:
 
 private:
 	WorldTransform worldTransform_;
-	Model* model_ = nullptr;
+	Model* skymodel_ = nullptr;
 	ViewProjection* viewProjection_;
 };
