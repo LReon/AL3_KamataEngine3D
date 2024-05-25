@@ -35,7 +35,8 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 
 	modelSkydome_ = Model::CreateFromOBJ("SkyDome", true);	
-	
+	skydome_ = new Skydome();
+	skydome_->Initialize(modelSkydome_, &viewProjection_);
 
 	viewProjection_.Initialize();
 	modelBlock_ = Model::Create();
@@ -92,6 +93,8 @@ void GameScene::Update() {
 	}
 
 
+	skydome_->Update();
+
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
 			if (!worldTransformBlock)
@@ -129,7 +132,9 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 
-	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
+	skydome_->Deaw();
+
+	/*for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine){
 			if (!worldTransformBlock)
 				continue;
@@ -137,7 +142,7 @@ void GameScene::Draw() {
 			
 	}
 }
-	
+	*/
 	
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

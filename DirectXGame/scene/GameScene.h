@@ -36,9 +36,11 @@ public: // メンバ関数
 	
 	DebugCamera* debugCamera_ = nullptr;
 
-	//Skydome* skydome_ = nullptr;
+	Skydome* skydome_ = nullptr;
 	
 	Model* modelSkydome_ = nullptr;
+
+
 	
 	/// <summary>
 	/// デストラクタ
