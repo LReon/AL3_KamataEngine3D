@@ -17,6 +17,7 @@ GameScene::~GameScene() {
 			delete worldTransformBlock;
 		}
 		
+
 	}
 	worldTransformBlocks_.clear();
 
