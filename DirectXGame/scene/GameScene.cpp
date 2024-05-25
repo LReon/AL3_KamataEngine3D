@@ -24,7 +24,7 @@ GameScene::~GameScene() {
 
 void GameScene::Initialize() {
 
-	debugCamera_ = new DebugCamera(1920, 1080);
+	debugCamera_ = new DebugCamera(1280, 720);
 
 
 	dxCommon_ = DirectXCommon::GetInstance();
