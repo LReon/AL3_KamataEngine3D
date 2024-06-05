@@ -23,6 +23,8 @@ public: // メンバ関数
 
 	MapChipField* mapChipField_;
 
+	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
+
 	void GenerateBlocks();
 
 	/// <summary>
