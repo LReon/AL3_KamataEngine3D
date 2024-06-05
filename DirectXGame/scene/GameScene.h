@@ -23,6 +23,11 @@ public: // メンバ関数
 
 	MapChipField* mapChipField_;
 
+	Model* modelBlock_ = nullptr;
+
+	ViewProjection viewProjection_;
+
+
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 
 	void GenerateBlocks();

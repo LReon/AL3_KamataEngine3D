@@ -7,13 +7,13 @@
 #include "Vector3.h"
 
 
-
-struct MapChipData {
-	std::vector<std::vector<MapChipType>> data;
-};
 enum class MapChipType { 
 	kBlank,
 	kBlock,
+};
+
+struct MapChipData {
+	std::vector<std::vector<MapChipType>> data;
 };
 
 class MapChipField {
