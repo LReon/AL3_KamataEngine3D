@@ -6,6 +6,7 @@
 GameScene::GameScene() {}
 
 
+
 GameScene::~GameScene() {
 
 	delete mapChipField_;
@@ -23,12 +24,17 @@ void GameScene::Initialize() {
 
 	GenerateBlocks();
 }
+
 void GameScene::GenerateBlocks() {
 
-	// 要素数
-	uint32_t numBlockVirtical = 
+	uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
+	uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
+
+	
 
 }
+
+
 
 void GameScene::Update() {}
 

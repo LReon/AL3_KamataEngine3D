@@ -9,6 +9,7 @@
 #include "WorldTransform.h"
 #include "MapChipField.h"
 
+
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -20,9 +21,8 @@ public: // メンバ関数
 	/// </summary>
 	GameScene();
 
-	// マップチップフィールド
 	MapChipField* mapChipField_;
-	
+
 	void GenerateBlocks();
 
 	/// <summary>
