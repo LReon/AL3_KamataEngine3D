@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "TextureManager.h"
 #include <cassert>
+#include "affine.h"
 
 
 GameScene::GameScene() {}
@@ -18,6 +19,10 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
+
+	modelBlock_ = Model::Create();
+
+	viewProjection_.Initialize();
 
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
@@ -101,7 +106,7 @@ void GameScene::Draw() {
 			if (!worldTransformBlock)
 				continue;
 
-
+			modelBlock_->Draw(*worldTransformBlock, viewProjection_);
 			
 		}
 	}
