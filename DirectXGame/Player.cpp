@@ -10,9 +10,11 @@
 
 void Player::Initialize(Model* model, uint32_t textureHandle, ViewProjection* viewProjection) {
 	// NULLポインタチェック
+
+	worldTransform_.Ini
+
 	assert(model);
 
-	worldTransform_.Initialize();
 
 	model_ = model;
 	textureHandle_ = textureHandle;
