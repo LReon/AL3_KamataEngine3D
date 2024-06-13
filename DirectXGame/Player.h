@@ -13,7 +13,9 @@ private:
 	// モデル
 	Model* model_ = nullptr;
 
-	
+	Vector3 velocity_ = {};
+
+	static inline const float kAcceleration = 1.0f;
 
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0u;
