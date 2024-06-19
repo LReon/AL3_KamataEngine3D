@@ -8,6 +8,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "MapChipField.h"
+#include "Player.h"
 
 
 /// <summary>

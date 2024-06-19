@@ -23,7 +23,7 @@ void GameScene::Initialize() {
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
-	player_ = new Player;
+	player_ = new Player();
 
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(2, 2);
 

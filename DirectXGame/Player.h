@@ -11,7 +11,7 @@ private:
 	// ワールド変換データ
 	WorldTransform worldTransform_;
 	// モデル
-	Model* model_ = nullptr;
+	Model* PlayerModel_ = nullptr;
 
 	Vector3 velocity_ = {};
 

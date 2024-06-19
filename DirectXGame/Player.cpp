@@ -12,7 +12,7 @@ void Player::Initialize(Model* model, ViewProjection* viewProjection, const Vect
 
 	worldTransform_.rotation_.y = std::numbers::pi_v<float> / 2.0f;
 
-	model_ = model;
+	PlayerModel_ = model;
 	
 	
 
@@ -47,5 +47,5 @@ void Player::Update() {
 
 void Player::Draw() {
 	// 3Dモデルを描画
-	model_->Draw(worldTransform_, *viewProjection_, textureHandle_);
+	PlayerModel_->Draw(worldTransform_, *viewProjection_, textureHandle_);
 }
