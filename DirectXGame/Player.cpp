@@ -5,15 +5,14 @@
 
 void Player::Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position) {
 	// NULLポインタチェック
-	assert(model);
+	/*assert(model);*/
 
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = position;
 
 	worldTransform_.rotation_.y = std::numbers::pi_v<float> / 2.0f;
 
-	PlayerModel_ = model;
-	
+	modelPlayer_ = model;
 	
 
 	/*textureHandle_ = textureHandle;*/
@@ -47,5 +46,5 @@ void Player::Update() {
 
 void Player::Draw() {
 	// 3Dモデルを描画
-	PlayerModel_->Draw(worldTransform_, *viewProjection_, textureHandle_);
+	modelPlayer_->Draw(worldTransform_, *viewProjection_, textureHandle_);
 }

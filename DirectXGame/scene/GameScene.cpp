@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include "TextureManager.h"
 #include <cassert>
-#include "Player.h"
+//#include "Player.h"
 
 
 GameScene::GameScene() {}
@@ -27,7 +27,9 @@ void GameScene::Initialize() {
 
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(2, 2);
 
-	player_->Initialize(modelPlayer_, &viewProjection_, playerPosition);
+	modelPlayerResource_ = Model::CreateFromOBJ("player", true);
+
+	player_->Initialize(modelPlayerResource_, &viewProjection_, playerPosition);
 
 	GenerateBlocks();
 }

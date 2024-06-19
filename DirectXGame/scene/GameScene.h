@@ -29,7 +29,10 @@ public: // メンバ関数
 	ViewProjection viewProjection_;
 
 	Player* player_ = nullptr;
-	Model* modelPlayer_ = nullptr;
+
+	Model* modelPlayerResource_ = nullptr;
+	
+
 
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 
