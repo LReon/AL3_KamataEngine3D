@@ -12,6 +12,7 @@ public:
 	void Update();
 	void Draw();
 	static inline const float kAcceleration = 1.0f;
+	Vector3 velocity_ = {};
 
 private:
 	// ワールド変換データ
@@ -19,7 +20,6 @@ private:
 	// モデル
 	Model* modelPlayer_ = nullptr;
 
-	Vector3 velocity_ = {};
 
 
 

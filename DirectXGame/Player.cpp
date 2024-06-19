@@ -40,7 +40,7 @@ void Player::Update() {
 	
 	}
 
-	worldTransform_.translation_.x += velocity_.x;
+	worldTransform_.translation_.z += velocity_.z;
 	worldTransform_.UpdateMatrix();
 }
 
