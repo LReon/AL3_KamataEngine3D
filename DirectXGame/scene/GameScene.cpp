@@ -119,6 +119,7 @@ void GameScene::Draw() {
 		}
 	}
 
+	player_->Draw();
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できるl
 	/// </summary>
