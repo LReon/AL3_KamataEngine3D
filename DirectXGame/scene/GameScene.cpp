@@ -72,6 +72,7 @@ void GameScene::GenerateBlocks() {
 
 void GameScene::Update() {
 
+	
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
 			if (!worldTransformBlock)
