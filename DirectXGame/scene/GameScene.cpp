@@ -28,6 +28,14 @@ void GameScene::Initialize() {
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
 	GenerateBlocks();
+
+	player_ = new Player();
+
+	viewProjection_.Initialize();
+
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(2, 2);
+
+	player_->Initialize(modelPlayerResource_, &viewProjection_, playerPosition);
 }
 
 void GameScene::GenerateBlocks() {
