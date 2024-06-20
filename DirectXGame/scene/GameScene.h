@@ -8,6 +8,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "MapChipField.h"
+#include "Player.h"
 
 
 /// <summary>
@@ -31,6 +32,10 @@ public: // メンバ関数
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 
 	void GenerateBlocks();
+
+	Player* player_ = nullptr;
+
+	Model* modelPlayerResource_ = nullptr;
 
 	/// <summary>
 	/// デストラクタ
