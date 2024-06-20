@@ -114,8 +114,7 @@ void GameScene::Draw() {
 			if (!worldTransformBlock)
 				continue;
 
-
-			
+			modelBlock_->Draw(*worldTransformBlock, viewProjection_);
 		}
 	}
 	player_->Draw();
