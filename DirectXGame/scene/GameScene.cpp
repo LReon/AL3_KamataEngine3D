@@ -22,6 +22,7 @@ void GameScene::Initialize() {
 
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
+	GenerateBlocks();
 
 	player_ = new Player();
 
@@ -33,7 +34,6 @@ void GameScene::Initialize() {
 
 	player_->Initialize(modelPlayerResource_, &viewProjection_, playerPosition);
 
-	GenerateBlocks();
 }
 
 void GameScene::GenerateBlocks() {
@@ -41,29 +41,23 @@ void GameScene::GenerateBlocks() {
 	uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
 	uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
 
-
 	worldTransformBlocks_.resize(numBlockHorizontal);
 
 	for (uint32_t i = 0; i < numBlockVirtical; ++i) {
 		worldTransformBlocks_[i].resize(numBlockHorizontal);
 	}
 
-
 	for (uint32_t i = 0; i < numBlockVirtical; ++i) {
 		for (uint32_t j = 0; j < numBlockHorizontal; ++j) {
 
-			if (mapChipField_->GetMapChipTypeByIndex(j,i) == MapChipType::kBlock) {
+			if (mapChipField_->GetMapChipTypeByIndex(j, i) == MapChipType::kBlock) {
 				WorldTransform* worldTransform = new WorldTransform();
 				worldTransform->Initialize();
 				worldTransformBlocks_[i][j] = worldTransform;
 				worldTransformBlocks_[i][j]->translation_ = mapChipField_->GetMapChipPositionByIndex(j, i);
-
-
 			}
 		}
-		
 	}
-
 
 
 }
