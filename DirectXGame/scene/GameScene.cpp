@@ -25,10 +25,11 @@ void GameScene::Initialize() {
 
 	player_ = new Player();
 
+	viewProjection_.Initialize();
 
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(2, 2);
 
-	modelPlayerResource_ = Model::CreateFromOBJ("player", true);
+	
 
 	player_->Initialize(modelPlayerResource_, &viewProjection_, playerPosition);
 
@@ -106,7 +107,6 @@ void GameScene::Draw() {
 	Model::PreDraw(commandList);
 
 
-	player_->Draw();
 
 
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
@@ -118,6 +118,7 @@ void GameScene::Draw() {
 			
 		}
 	}
+	player_->Draw();
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる

@@ -11,8 +11,10 @@ void Player::Initialize(Model* model, ViewProjection* viewProjection, const Vect
 	worldTransform_.translation_ = position;
 
 	worldTransform_.rotation_.y = std::numbers::pi_v<float> / 2.0f;
-
 	modelPlayer_ = model;
+
+	modelPlayer_ = Model::CreateFromOBJ("player",true);
+	
 	
 	
 
@@ -25,6 +27,8 @@ void Player::Update() {
 	// 行列を定数バッファに転送
 	worldTransform_.TransferMatrix();
 	
+	
+
 	if (Input::GetInstance()->PushKey(DIK_RIGHT) || Input::GetInstance()->PushKey(DIK_LEFT)) {
 	
 	Vector3 acceleration = {};
