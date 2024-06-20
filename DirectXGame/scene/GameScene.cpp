@@ -21,8 +21,11 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 
 	mapChipField_ = new MapChipField;
+	modelBlock_->Create();
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 	GenerateBlocks();
+
+
 
 	player_ = new Player();
 
