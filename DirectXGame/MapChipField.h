@@ -1,13 +1,12 @@
 #pragma once
-#include <math.h>
 #include <cstdint>
-#include <vector>
+#include <math.h>
 #include <string>
+#include <vector>
 
 #include "Vector3.h"
 
-
-enum class MapChipType { 
+enum class MapChipType {
 	kBlank,
 	kBlock,
 };
@@ -33,7 +32,4 @@ private:
 	static inline const uint32_t kNumBlockVirtical = 20;
 	static inline const uint32_t kNumBlockHorizontal = 100;
 	MapChipData mapChipData_;
-
 };
-
-
