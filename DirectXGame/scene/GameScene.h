@@ -8,7 +8,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "MapChipField.h"
-//#include "Player.h"
+#include "Player.h"
 
 
 /// <summary>
@@ -28,10 +28,10 @@ public: // メンバ関数
 
 	ViewProjection viewProjection_;
 
-	/*Player* player_ = nullptr;
+	Player* player_ = nullptr;
 
 	Model* modelPlayerResource_ = nullptr;
-	*/
+	
 
 
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;

@@ -16,26 +16,29 @@ GameScene::~GameScene() {
 
 void GameScene::Initialize() {
 
+	
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
-	mapChipField_ = new MapChipField;
-	viewProjection_.Initialize();
 	modelBlock_ = Model::Create();
+
+	viewProjection_.Initialize();
+
+	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
+
 	GenerateBlocks();
 
 
+	player_ = new Player();
 
-	/*player_ = new Player();*/
 
-
-	/*Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(2, 2);
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(1, 10);
 
 	
 
-	player_->Initialize(modelPlayerResource_, &viewProjection_, playerPosition);*/
+	player_->Initialize(modelPlayerResource_, &viewProjection_, playerPosition);
 
 }
 
@@ -77,7 +80,7 @@ void GameScene::Update() {
 			worldTransformBlock->UpdateMatrix();
 		}
 	}
-
+	player_->Update();
 
 }
 
@@ -115,7 +118,7 @@ void GameScene::Draw() {
 			modelBlock_->Draw(*worldTransformBlock, viewProjection_);
 		}
 	}
-	//player_->Draw();
+	player_->Draw();
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
