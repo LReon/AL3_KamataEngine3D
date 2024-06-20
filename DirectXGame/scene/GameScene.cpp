@@ -21,7 +21,8 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 
 	mapChipField_ = new MapChipField;
-	modelBlock_->Create();
+	viewProjection_.Initialize();
+	modelBlock_ = Model::Create();
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 	GenerateBlocks();
 
@@ -29,7 +30,6 @@ void GameScene::Initialize() {
 
 	/*player_ = new Player();*/
 
-	viewProjection_.Initialize();
 
 	/*Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(2, 2);
 
