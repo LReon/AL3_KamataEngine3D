@@ -14,6 +14,7 @@ void Player::Initialize(Model* model, ViewProjection* viewProjection, const Vect
 
 	modelPlayer_ = model;
 	
+	
 
 	/*textureHandle_ = textureHandle;*/
 	// 引数の内容をメンバ変数に記録

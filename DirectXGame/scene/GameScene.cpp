@@ -25,6 +25,7 @@ void GameScene::Initialize() {
 
 	player_ = new Player();
 
+
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(2, 2);
 
 	modelPlayerResource_ = Model::CreateFromOBJ("player", true);
