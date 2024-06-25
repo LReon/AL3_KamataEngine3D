@@ -13,45 +13,19 @@ Matrix4x4 Multiply(const Matrix4x4& m1, const Matrix4x4& m2) {
 	return ret;
 }
 
-Matrix4x4 MakeScaleMatrix(const Vector3& scale) {
-	Matrix4x4 result = {};
+Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rot, const Vector3& translate) {
 
-	result.mat[0][0] = scale.x;
-	result.mat[1][1] = scale.y;
-	result.mat[2][2] = scale.z;
-	result.mat[3][3] = 1.0f;
+	Vector3 dm = scale;
 
-	return result;
-}
+	Matrix4x4 RotateMatY = {cosf(rot.y), 0, -sinf(rot.y), 0, 0, 1, 0, 0, sinf(rot.y), 0, cosf(rot.y), 0, 0, 0, 0, 1};
 
-Matrix4x4 MakeTranslateMatrix(const Vector3& translate) {
-	Matrix4x4 result = {};
+	Matrix4x4 TranslateMat = {
 
-	result.mat[0][0] = 1.0f;
-	result.mat[1][1] = 1.0f;
-	result.mat[2][2] = 1.0f;
-	result.mat[3][3] = 1.0f;
-	result.mat[3][0] = translate.x;
-	result.mat[3][1] = translate.y;
-	result.mat[3][2] = translate.z;
+	    1, 0, 0, 0,           0,           1,           0, 0, 0,
+	    0, 1, 0, translate.x, translate.y, translate.z, 1
 
-	return result;
-}
+	};
 
-Matrix4x4 MakeRotateMatrix(const Vector3& rotate) {
-
-	Matrix4x4 rotateX = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, cosf(rotate.x), sinf(rotate.x), 0.0f, 0.0f, -sinf(rotate.x), cosf(rotate.x), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
-
-	Matrix4x4 rotateY = {cosf(rotate.y), 0.0f, -sinf(rotate.y), 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, sinf(rotate.y), 0.0f, cosf(rotate.y), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
-
-	Matrix4x4 rotateZ = {cosf(rotate.z), -sinf(rotate.z), 0.0f, 0.0f, -sinf(rotate.z), cosf(rotate.z), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
-	return Multiply(Multiply(rotateX, rotateY), rotateZ);
-}
-
-Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Vector3& translate) {
-	Matrix4x4 ScaleM = MakeScaleMatrix(scale);
-	Matrix4x4 RotateM = MakeRotateMatrix(rotate);
-	Matrix4x4 TransM = MakeTranslateMatrix(translate);
-
-	return Multiply(Multiply(TransM, RotateM), ScaleM);
+	Matrix4x4 ansMat = Multiply(RotateMatY, TranslateMat);
+	return ansMat;
 }
