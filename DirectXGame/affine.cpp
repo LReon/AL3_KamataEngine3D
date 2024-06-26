@@ -17,12 +17,18 @@ Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rot, const Vecto
 
 	Vector3 dm = scale;
 
-	Matrix4x4 RotateMatY = {cosf(rot.y), 0, -sinf(rot.y), 0, 0, 1, 0, 0, sinf(rot.y), 0, cosf(rot.y), 0, 0, 0, 0, 1};
+	Matrix4x4 RotateMatY = {cosf(rot.y), 0, -sinf(rot.y), 0,
+							0, 1, 0, 0, 
+							sinf(rot.y), 0, cosf(rot.y), 0,
+							0, 0, 0, 1
+							};
 
 	Matrix4x4 TranslateMat = {
 
-	    1, 0, 0, 0,           0,           1,           0, 0, 0,
-	    0, 1, 0, translate.x, translate.y, translate.z, 1
+	    1, 0, 0, 0,
+		0, 1, 0, 0, 
+		0,0, 1, 0, 
+		translate.x, translate.y, translate.z, 1
 
 	};
 
