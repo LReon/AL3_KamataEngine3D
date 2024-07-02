@@ -11,7 +11,7 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 
 	delete mapChipField_;
-
+	//delete debugCamera_;
 }
 
 void GameScene::Initialize() {
@@ -20,6 +20,13 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
+
+	//debugCamera_ = new DebugCamera(1280, 720);
+
+	cameraController_ = new CameraController;
+	cameraController_->Initialize();
+	cameraController_->SetTarget(player_);
+	cameraController_->Reset();
 
 	modelBlock_ = Model::Create();
 
@@ -74,7 +81,16 @@ void GameScene::GenerateBlocks() {
 
 void GameScene::Update() {
 
+	/*debugCamera_->Update();
+
+	if (isDebugCameraActive) {
 	
+		viewProjection_.matView = viewProjection_.
+	
+	}*/
+
+	cameraController_->Update();
+
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
 			if (!worldTransformBlock)

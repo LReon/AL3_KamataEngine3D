@@ -9,6 +9,8 @@
 #include "WorldTransform.h"
 #include "MapChipField.h"
 #include "Player.h"
+#include "CameraController.h"
+#include "DebugCamera.h"
 
 
 /// <summary>
@@ -21,6 +23,10 @@ public: // メンバ関数
 	/// コンストクラタ
 	/// </summary>
 	GameScene();
+
+	/*bool isDebugCameraActive = false;
+
+	DebugCamera* debugCamera_ = nullptr;*/
 
 	MapChipField* mapChipField_;
 
@@ -36,7 +42,11 @@ public: // メンバ関数
 
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 
+
+
 	void GenerateBlocks();
+
+	CameraController* cameraController_;
 
 	/// <summary>
 	/// デストラクタ

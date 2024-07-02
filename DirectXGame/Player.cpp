@@ -140,3 +140,5 @@ void Player::Draw() {
 	// 3Dモデルを描画
 	modelPlayer_->Draw(worldTransform_, *viewProjection_, textureHandle_);
 }
+
+void Player::GetWorldTransform() {}
