@@ -89,7 +89,7 @@ void GameScene::Update() {
 	
 	}*/
 
-	cameraController_->Update();
+	//cameraController_->Update();
 
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {

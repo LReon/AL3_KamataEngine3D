@@ -141,4 +141,4 @@ void Player::Draw() {
 	modelPlayer_->Draw(worldTransform_, *viewProjection_, textureHandle_);
 }
 
-void Player::GetWorldTransform() {}
+

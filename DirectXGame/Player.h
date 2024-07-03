@@ -18,7 +18,7 @@ public:
 	static inline const float kLimitRunSpeed = 5.0f;
 	Vector3 velocity_ = {};
 
-	WorldTransform GetWorldTransform();
+	//WorldTransform GetWorldTransform();
 
 	LRDirection lrDirection_ = LRDirection::kRight;
 	float turnFirstRotationY_ = 0.0f;
