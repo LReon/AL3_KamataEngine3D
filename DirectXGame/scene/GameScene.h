@@ -9,6 +9,7 @@
 #include "WorldTransform.h"
 #include "MapChipField.h"
 #include "Player.h"
+#include "CameraController.h"
 
 
 /// <summary>
@@ -32,7 +33,7 @@ public: // メンバ関数
 
 	Model* modelPlayerResource_ = nullptr;
 	
-
+	CameraController* cameraController_;
 
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 

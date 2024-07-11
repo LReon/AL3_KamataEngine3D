@@ -11,6 +11,7 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 
 	delete mapChipField_;
+	delete cameraController_;
 
 }
 
@@ -20,7 +21,7 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
-
+	
 	modelBlock_ = Model::Create();
 
 	viewProjection_.Initialize();
@@ -29,6 +30,7 @@ void GameScene::Initialize() {
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
 	GenerateBlocks();
+
 
 
 	player_ = new Player();
@@ -41,6 +43,11 @@ void GameScene::Initialize() {
 
 
 	player_->Initialize(modelPlayerResource_, &viewProjection_, playerPosition);
+	cameraController_ = new CameraController();
+	cameraController_->Initialize();
+	cameraController_->SetTarget(player_);
+
+	cameraController_->Reset();
 
 }
 
@@ -83,6 +90,7 @@ void GameScene::Update() {
 		}
 	}
 	player_->Update();
+	cameraController_->Update();
 
 }
 
