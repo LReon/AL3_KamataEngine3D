@@ -12,6 +12,7 @@ GameScene::~GameScene() {
 
 	delete mapChipField_;
 	delete cameraController_;
+	delete debugCamera_;
 
 }
 
@@ -22,6 +23,8 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 	
+	
+
 	modelBlock_ = Model::Create();
 
 	viewProjection_.Initialize();
@@ -36,7 +39,7 @@ void GameScene::Initialize() {
 	player_ = new Player();
 
 
-	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(18, 17);
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(18, 18);
 
 
 
@@ -46,6 +49,19 @@ void GameScene::Initialize() {
 	cameraController_ = new CameraController();
 	cameraController_->Initialize();
 	cameraController_->SetTarget(player_);
+
+
+	debugCamera_ = new DebugCamera(1280, 720);
+
+	// カメラ
+	cameraController_ = new CameraController();
+	cameraController_->Initialize();
+	cameraController_->SetTarget(player_);
+	cameraController_->Reset();
+
+	Rect cameraArea = {11.0f, 20, 6.0f, 6.0f};
+	cameraController_->SetMovableArea(cameraArea);
+
 
 	cameraController_->Reset();
 
@@ -82,6 +98,35 @@ void GameScene::GenerateBlocks() {
 void GameScene::Update() {
 
 	
+	#ifndef DEBUG
+	if (input_->TriggerKey(DIK_SPACE)) {
+		if (isDebugCameraActive_ == true) {
+		
+		isDebugCameraActive_ = false;
+
+		} else {
+			isDebugCameraActive_ = true;
+		}
+	
+	}
+
+#endif // !DEBUG
+
+	if (isDebugCameraActive_) {
+		debugCamera_->Update();
+		viewProjection_.matView = debugCamera_->GetViewProjection().matView;
+		viewProjection_.matProjection = debugCamera_->GetViewProjection().matProjection;
+		viewProjection_.TransferMatrix();
+		
+	
+	} else {
+		viewProjection_.matView = cameraController_->GetViewProjection().matView;
+		viewProjection_.matProjection = cameraController_->GetViewProjection().matProjection;
+		// ビュープロジェクション行列の転送
+		viewProjection_.TransferMatrix();
+	}
+
+
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
 			if (!worldTransformBlock)

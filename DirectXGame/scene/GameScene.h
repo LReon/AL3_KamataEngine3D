@@ -10,6 +10,7 @@
 #include "MapChipField.h"
 #include "Player.h"
 #include "CameraController.h"
+#include "DebugCamera.h"
 
 
 /// <summary>
@@ -22,6 +23,10 @@ public: // メンバ関数
 	/// コンストクラタ
 	/// </summary>
 	GameScene();
+
+	bool isDebugCameraActive_ = false;
+
+	DebugCamera* debugCamera_ = nullptr;
 
 	MapChipField* mapChipField_;
 
