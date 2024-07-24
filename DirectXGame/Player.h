@@ -22,7 +22,7 @@ struct CollisionMapInfo {
 	// 天井衝突フラグ
 	bool ceilCollision = false;
 	// 着地フラグ
-	bool onGround = false;
+	bool landing = false;
 	// 壁接触フラグ
 	bool wallHit = false;
 	// 移動量
@@ -37,9 +37,14 @@ public:
 	void Move();
 	void MapCollision(CollisionMapInfo& info);
 	void MapTopCollision(CollisionMapInfo& info);
+	void MapBottomCollision(CollisionMapInfo& info);
+	void MapRightCollision(CollisionMapInfo& info);
+	void MapLeftCollision(CollisionMapInfo& info);
 	void ResultMove(const CollisionMapInfo& info);
 	void CeilingHit(const CollisionMapInfo& info);
-	static inline const float kAcceleration = 0.1f;
+	void WallHit(const CollisionMapInfo& info);
+	void OnGround(const CollisionMapInfo& info);
+	static inline const float kAcceleration = 0.01f;
 	static inline const float kAttenuation = 0.5f;
 	static inline const float kLimitRunSpeed = 0.8f;
 	Vector3 velocity_ = {};
@@ -68,6 +73,9 @@ private:
 	static inline const float kWidth = 0.8f;
 	static inline const float kHeight = 0.8f;
 	static inline const float kBlank = 1.0f;
+	static inline const float kAttenuationWall = 1.0f;
+	static inline const float kAttenuationLanding = 0.1f;
+	static inline const float kGroundSearchHeight = 0.06f;
 	// ワールド変換データ
 	WorldTransform worldTransform_;
 	// モデル
