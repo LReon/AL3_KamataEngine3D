@@ -39,7 +39,7 @@ void GameScene::Initialize() {
 	player_ = new Player();
 
 
-	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(3, 16);
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(3, 15);
 	
 
 	player_->SetMapChipField(mapChipField_);
