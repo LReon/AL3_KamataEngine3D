@@ -46,6 +46,17 @@ void GameScene::Initialize() {
 
 
 	player_->Initialize(modelPlayerResource_, &viewProjection_, playerPosition);
+
+
+	
+	enemy_ = new Enemy();
+
+	modelEnemy_ = Model::CreateFromOBJ("enemy", true);
+
+	Vector3 enemyPosition = mapChipField_->GetMapChipPositionByIndex(16, 18);
+	
+	enemy_->Initialize(modelEnemy_, &viewProjection_, enemyPosition);
+
 	cameraController_ = new CameraController();
 	cameraController_->Initialize();
 	cameraController_->SetTarget(player_);
@@ -96,9 +107,11 @@ void GameScene::GenerateBlocks() {
 
 
 void GameScene::Update() {
-
-	
 	#ifndef DEBUG
+
+	player_->Update();
+	enemy_->Update();
+
 	if (input_->TriggerKey(DIK_SPACE)) {
 		if (isDebugCameraActive_ == true) {
 		
@@ -134,7 +147,6 @@ void GameScene::Update() {
 			worldTransformBlock->UpdateMatrix();
 		}
 	}
-	player_->Update();
 	cameraController_->Update();
 
 }
@@ -174,6 +186,7 @@ void GameScene::Draw() {
 		}
 	}
 	player_->Draw();
+	enemy_->Draw();
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる

@@ -9,6 +9,7 @@
 #include "WorldTransform.h"
 #include "MapChipField.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "CameraController.h"
 #include "DebugCamera.h"
 
@@ -37,6 +38,10 @@ public: // メンバ関数
 	Player* player_ = nullptr;
 
 	Model* modelPlayerResource_ = nullptr;
+
+	Enemy* enemy_ = nullptr;
+
+	Model* modelEnemy_ = nullptr;
 	
 	CameraController* cameraController_;
 
