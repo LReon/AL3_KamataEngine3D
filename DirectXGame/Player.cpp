@@ -14,7 +14,6 @@
 void Player::Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position) {
 	// NULLポインタチェック
 	/*assert(model);*/
-
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = position;
 
@@ -169,6 +168,7 @@ Vector3 Player::CornerPosition(const Vector3& center, Corner corner) {
 	
 	return result;
 }
+
 
 // マップ衝突判定上
 void Player::MapTopCollision(CollisionMapInfo& info) {
@@ -410,4 +410,33 @@ void Player::OnGround(const CollisionMapInfo& info) {
 			onGround_ = true;
 		}
 	}
+}
+
+Vector3 Player::GetWorldPosition() { 
+
+	Vector3 worldPos;
+	worldPos.x = worldTransform_.translation_.x;
+	worldPos.y = worldTransform_.translation_.y;
+	worldPos.z = worldTransform_.translation_.z;
+
+	return worldPos;
+
+}
+
+void Player::OnCollision(const Enemy* enemy) {
+	(void)enemy;
+	// ジャンプ歌詞(仮処理)
+	velocity_.y += 1.0f;
+}
+
+AABB Player::GetAABB() {
+
+	Vector3 worldPos = GetWorldPosition();
+	AABB aabb;
+
+	aabb.min = {worldPos.x - kWidth / 2.0f, worldPos.y - kHeight / 2.0f, worldPos.z - kWidth / 2.0f};
+	aabb.max = {worldPos.x + kWidth / 2.0f, worldPos.y + kHeight / 2.0f, worldPos.z + kWidth / 2.0f};
+
+	return aabb;
+
 }

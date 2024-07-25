@@ -49,14 +49,19 @@ void GameScene::Initialize() {
 
 
 	
-	enemy_ = new Enemy();
+	//enemy_ = new Enemy();
 
-	modelEnemy_ = Model::CreateFromOBJ("enemy", true);
-
-	Vector3 enemyPosition = mapChipField_->GetMapChipPositionByIndex(16, 18);
 	
-	enemy_->Initialize(modelEnemy_, &viewProjection_, enemyPosition);
 
+	
+	modelEnemy_ = Model::CreateFromOBJ("enemy", true);
+	
+	for (int32_t i = 0; i < 1; ++i) {
+		Enemy* newEnemy = new Enemy();
+		Vector3 enemyPosition = mapChipField_->GetMapChipPositionByIndex(10 + i * 3, 18);
+		newEnemy->Initialize(modelEnemy_, &viewProjection_, enemyPosition);
+		enemies_.push_back(newEnemy);
+	}
 	cameraController_ = new CameraController();
 	cameraController_->Initialize();
 	cameraController_->SetTarget(player_);
@@ -104,13 +109,35 @@ void GameScene::GenerateBlocks() {
 
 }
 
+// 全ての当たり判定
+void GameScene::CheckAllCollisions() {
+#pragma region 自キャラと敵キャラの当たり判定
+	// 判定対象1と2の座標
+	AABB aabb1, aabb2;
+	// 自キャラの座標
+	aabb1 = player_->GetAABB();
+	// 自キャラと敵弾全ての当たり判定
+	for (Enemy* enemy : enemies_) {
+		/// 敵弾の座標
+		aabb2 = enemy->GetAABB();
+		if (AABB::IsCollision(aabb1, aabb2)) {
+			// 自キャラの衝突時コールバックを呼び出す
+			player_->OnCollision(enemy);
+			enemy->OnCollision(player_);
+		}
+	}
+#pragma endregion
+}
 
 
 void GameScene::Update() {
 	#ifndef DEBUG
 
 	player_->Update();
-	enemy_->Update();
+	// 敵の更新
+	for (Enemy* enemy : enemies_) {
+		enemy->Update();
+	}
 
 	if (input_->TriggerKey(DIK_SPACE)) {
 		if (isDebugCameraActive_ == true) {
@@ -122,6 +149,8 @@ void GameScene::Update() {
 		}
 	
 	}
+
+	CheckAllCollisions();
 
 #endif // !DEBUG
 
@@ -186,7 +215,10 @@ void GameScene::Draw() {
 		}
 	}
 	player_->Draw();
-	enemy_->Draw();
+	// 敵の描画
+	for (Enemy* enemy : enemies_) {
+		enemy->Draw();
+	}
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる

@@ -1,7 +1,9 @@
 #pragma once
 #include "Model.h"
 #include "WorldTransform.h"
+#include "Aabb.h"
 
+class Player;
 class Enemy {
 
 public:
@@ -11,9 +13,15 @@ public:
 	void Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position);
 	void Update();
 	void Draw();
+	void OnCollision(const Player* player);
+	Vector3 GetWorldPosition();
+	AABB GetAABB();
 
 	private:
 	
+	static inline const float kWidth = 1.0f;
+	    static inline const float kHeight = 1.0f;
+
 	// 歩行の速さ
 	static inline const float kWalkSpeed = 0.03f;
 	// 最初の角度

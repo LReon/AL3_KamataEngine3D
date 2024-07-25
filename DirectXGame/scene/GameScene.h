@@ -39,7 +39,8 @@ public: // メンバ関数
 
 	Model* modelPlayerResource_ = nullptr;
 
-	Enemy* enemy_ = nullptr;
+	//Enemy* enemy_ = nullptr;
+	std::list<Enemy*> enemies_;
 
 	Model* modelEnemy_ = nullptr;
 	
@@ -48,6 +49,8 @@ public: // メンバ関数
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 
 	void GenerateBlocks();
+
+	void CheckAllCollisions();
 
 	/// <summary>
 	/// デストラクタ

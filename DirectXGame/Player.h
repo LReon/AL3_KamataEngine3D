@@ -1,8 +1,10 @@
 #include <Model.h>
 #include <WorldTransform.h>
 #include "MathUtilityForText.h"
+#include "aabb.h"
 
 class MapChipField;
+class Enemy;
 
 enum class LRDirection {
 	kRight,
@@ -48,7 +50,7 @@ public:
 	static inline const float kAcceleration = 0.01f;
 	static inline const float kAttenuation = 0.5f;
 	static inline const float kLimitRunSpeed = 0.8f;
-	Vector3 velocity_ = {};
+	//Vector3 velocity_ = {};
 
 	LRDirection lrDirection_ = LRDirection::kRight;
 	float turnFirstRotationY_ = 0.0f;
@@ -67,7 +69,13 @@ public:
 
 	void SetMapChipField(MapChipField* mapChipField) { mapChipField_ = mapChipField; }
 
+	void OnCollision(const Enemy* enemy);
+
 	Vector3 CornerPosition(const Vector3& center, Corner corner);
+
+	Vector3 GetWorldPosition();
+
+	AABB GetAABB();
 
 private:
 
@@ -81,6 +89,8 @@ private:
 	WorldTransform worldTransform_;
 	// モデル
 	Model* modelPlayer_ = nullptr;
+
+	Vector3 velocity_ = {};
 
 	MapChipField* mapChipField_ = nullptr;
 
