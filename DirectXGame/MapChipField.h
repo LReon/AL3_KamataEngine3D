@@ -3,7 +3,7 @@
 #include <math.h>
 #include <string>
 #include <vector>
-
+#include <assert.h>
 #include "Vector3.h"
 
 enum class MapChipType {

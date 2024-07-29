@@ -13,6 +13,7 @@ GameScene::~GameScene() {
 	delete mapChipField_;
 	delete cameraController_;
 	delete debugCamera_;
+	delete deathParticles_;
 
 }
 
@@ -50,9 +51,13 @@ void GameScene::Initialize() {
 
 	
 	//enemy_ = new Enemy();
+	modelParticles_ = Model::CreateFromOBJ("deathParticle", true);
+
+	deathParticles_ = new DeathParticles;
+
+	deathParticles_->Initialize(modelParticles_, &viewProjection_, playerPosition);
 
 	
-
 	
 	modelEnemy_ = Model::CreateFromOBJ("enemy", true);
 	
@@ -134,6 +139,12 @@ void GameScene::Update() {
 	#ifndef DEBUG
 
 	player_->Update();
+
+	if (deathParticles_) {
+	
+		deathParticles_->Update();
+	
+	}
 	
 	for (Enemy* enemy : enemies_) {
 		enemy->Update();
@@ -215,6 +226,13 @@ void GameScene::Draw() {
 		}
 	}
 	player_->Draw();
+
+	if (deathParticles_) {
+	
+	deathParticles_->Draw();
+	
+	}
+
 	// 敵の描画
 	for (Enemy* enemy : enemies_) {
 		enemy->Draw();

@@ -12,6 +12,7 @@
 #include "Enemy.h"
 #include "CameraController.h"
 #include "DebugCamera.h"
+#include "DeathParticles.h"
 
 
 /// <summary>
@@ -38,6 +39,9 @@ public: // メンバ関数
 	Player* player_ = nullptr;
 
 	Model* modelPlayerResource_ = nullptr;
+	
+	DeathParticles* deathParticles_ = nullptr;
+	Model* modelParticles_ = nullptr;
 
 	//Enemy* enemy_ = nullptr;
 	std::list<Enemy*> enemies_;
