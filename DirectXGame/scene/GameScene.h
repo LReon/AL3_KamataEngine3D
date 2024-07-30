@@ -43,6 +43,17 @@ public: // メンバ関数
 	DeathParticles* deathParticles_ = nullptr;
 	Model* modelParticles_ = nullptr;
 
+	enum class Phase {
+
+		kPlay,
+		kDeath
+
+	};
+
+	Phase phase_;
+
+	
+
 	//Enemy* enemy_ = nullptr;
 	std::list<Enemy*> enemies_;
 

@@ -47,6 +47,7 @@ public:
 	void WallHit(const CollisionMapInfo& info);
 	void OnGround(const CollisionMapInfo& info);
 
+
 	static inline const float kAcceleration = 0.01f;
 	static inline const float kAttenuation = 0.5f;
 	static inline const float kLimitRunSpeed = 0.8f;
@@ -58,6 +59,8 @@ public:
 	static inline const float kTimeTurn = 0.3f;
 
 	bool onGround_ = true;
+
+
 
 	static inline const float kGravityAcceleration = 0.2f;
 	static inline const float kLimitFallSpeed = 0.8f;
@@ -76,6 +79,10 @@ public:
 	Vector3 GetWorldPosition();
 
 	AABB GetAABB();
+
+	bool isDead_ = false;
+
+	bool isDead() const { return isDead_; }
 
 private:
 

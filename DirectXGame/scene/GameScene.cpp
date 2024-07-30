@@ -137,18 +137,8 @@ void GameScene::CheckAllCollisions() {
 
 void GameScene::Update() {
 	#ifndef DEBUG
-
-	player_->Update();
-
-	if (deathParticles_) {
 	
-		deathParticles_->Update();
 	
-	}
-	
-	for (Enemy* enemy : enemies_) {
-		enemy->Update();
-	}
 
 	if (input_->TriggerKey(DIK_SPACE)) {
 		if (isDebugCameraActive_ == true) {
@@ -161,33 +151,113 @@ void GameScene::Update() {
 	
 	}
 
-	CheckAllCollisions();
+	
 
 #endif // !DEBUG
 
-	if (isDebugCameraActive_) {
-		debugCamera_->Update();
-		viewProjection_.matView = debugCamera_->GetViewProjection().matView;
-		viewProjection_.matProjection = debugCamera_->GetViewProjection().matProjection;
-		viewProjection_.TransferMatrix();
-		
-	
-	} else {
-		viewProjection_.matView = cameraController_->GetViewProjection().matView;
-		viewProjection_.matProjection = cameraController_->GetViewProjection().matProjection;
-		
-		viewProjection_.TransferMatrix();
-	}
+	switch (phase_) {
+	case Phase::kPlay:
 
-
-	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
-		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
-			if (!worldTransformBlock)
-				continue;
-			worldTransformBlock->UpdateMatrix();
+		player_->Update();
+		for (Enemy* enemy : enemies_) {
+			enemy->Update();
 		}
+		cameraController_->Update();
+
+		if (isDebugCameraActive_) {
+			debugCamera_->Update();
+			viewProjection_.matView = debugCamera_->GetViewProjection().matView;
+			viewProjection_.matProjection = debugCamera_->GetViewProjection().matProjection;
+			viewProjection_.TransferMatrix();
+
+		} else {
+			viewProjection_.matView = cameraController_->GetViewProjection().matView;
+			viewProjection_.matProjection = cameraController_->GetViewProjection().matProjection;
+
+			viewProjection_.TransferMatrix();
+		}
+
+		for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
+			for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
+				if (!worldTransformBlock)
+					continue;
+				worldTransformBlock->UpdateMatrix();
+			}
+		}
+	
+		CheckAllCollisions();
+
+
+		break;
+	case Phase::kDeath:
+		for (Enemy* enemy : enemies_) {
+			enemy->Update();
+		}
+		if (deathParticles_) {
+
+			deathParticles_->Update();
+		}
+		if (isDebugCameraActive_) {
+			debugCamera_->Update();
+			viewProjection_.matView = debugCamera_->GetViewProjection().matView;
+			viewProjection_.matProjection = debugCamera_->GetViewProjection().matProjection;
+			viewProjection_.TransferMatrix();
+
+		} else {
+			viewProjection_.matView = cameraController_->GetViewProjection().matView;
+			viewProjection_.matProjection = cameraController_->GetViewProjection().matProjection;
+
+			viewProjection_.TransferMatrix();
+		}
+
+		for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
+			for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
+				if (!worldTransformBlock)
+					continue;
+				worldTransformBlock->UpdateMatrix();
+			}
+		}
+
+		break;
+
 	}
-	cameraController_->Update();
+
+
+	
+
+}
+
+void GameScene::ChangePhase() {
+
+	switch (phase_) {
+	case Phase::kPlay:
+
+		if (player_->isDead()) {
+		
+		phase_ = Phase::kDeath;
+			const Vector3& deathParticlesPosition = player_->GetWorldPosition();
+			deathParticles_ = new DeathParticles;
+			deathParticles_->Initialize(modelParticles_, &viewProjection_, deathParticlesPosition);
+
+		}
+		break;
+
+		
+
+	
+	case Phase::kDeath:
+		
+		if (deathParticles_ && deathParticles_->IsFinished()) {
+		
+			finished_ = true;
+		}
+
+
+		break;
+	}
+
+
+
 
 }
 
