@@ -77,6 +77,10 @@ public:
 
 	AABB GetAABB();
 
+	bool isDead_ = false;
+
+	bool IsDead() const { return isDead_; }
+
 private:
 
 	static inline const float kWidth = 0.8f;

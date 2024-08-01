@@ -426,7 +426,8 @@ Vector3 Player::GetWorldPosition() {
 void Player::OnCollision(const Enemy* enemy) {
 	(void)enemy;
 	// ジャンプ歌詞(仮処理)
-	velocity_.y += 1.0f;
+//	velocity_.y += 1.0f;
+	isDead_ = true;
 }
 
 AABB Player::GetAABB() {

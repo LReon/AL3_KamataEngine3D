@@ -16,6 +16,10 @@ public:
 
 	void Draw();
 
+	bool isFinished_ = false;
+
+	bool IsFinished() const { return isFinished_; }
+
 private:
 	Model* model_ = nullptr;
 
@@ -35,7 +39,7 @@ private:
 
 	static inline const float kAngleUnit = (2 * std::numbers::pi_v<float> / kNumParticles);
 
-	bool isFinished_ = false;
+	//bool isFinished_ = false;
 
 	float counter_ = 0.0f;
 

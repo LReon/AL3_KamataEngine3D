@@ -46,6 +46,23 @@ public: // メンバ関数
 	//Enemy* enemy_ = nullptr;
 	std::list<Enemy*> enemies_;
 
+	enum class Phase {
+
+		kPlay,
+		kDeath
+
+
+
+	};
+	
+	Phase phase_;
+
+	void ChangePhase();
+
+	bool finished_ = false;
+
+	bool IsFinished() const { return finished_; }
+
 	Model* modelEnemy_ = nullptr;
 	
 	CameraController* cameraController_;
