@@ -42,7 +42,7 @@ private:
 
 	Player* target_ = nullptr;
 
-	static inline const float kInterpolationRate = 0.03f;
+	static inline const float kInterpolationRate = 0.3f;
 	const float kVelocityBias = 10.0f;
 	static inline const Rect margen = {-320, 320, -200, 200};
 
